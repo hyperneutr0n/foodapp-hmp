@@ -4,6 +4,17 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>List</ion-title>
+    <ion-buttons slot="end">
+      <ion-button size="small" color="primary" fill="solid" (click)="goYesterday()" [disabled]="yesterdayLimit">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+      <ion-button size="small" color="primary" fill="solid" (click)="reset()">
+        <ion-icon name="sync-outline"></ion-icon>
+      </ion-button>
+      <ion-button size="small" color="primary" fill="solid" (click)="goTomorrow()" [disabled]="tomorrowLimit">
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -11,8 +22,31 @@
   <ion-list lines="full">
     <ion-item>
       <ion-text>
-        Product List per {{ today }}
+        Product List per {{ today_ind() }}
+      </ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-text>
+        Product Name <b>{{product.Name}}</b>
+      </ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-text>
+        Product Price <b>Rp {{product.Price}}</b>
+      </ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-text>
+        Quantity
+        <ion-button size="small" (click)="subtractQuantity()" [disabled]="minLimit">
+          <ion-icon name="remove-outline"></ion-icon>
+        </ion-button>
+        {{ quantity }}
+        <ion-button size="small" (click)="addQuantity()" [disabled]="maxLimit">
+          <ion-icon name="add-outline"></ion-icon>
+        </ion-button>
       </ion-text>
     </ion-item>
   </ion-list>
+
 </ion-content>
