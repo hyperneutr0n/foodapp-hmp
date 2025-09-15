@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   standalone: false
 })
 export class ListPage implements OnInit {
+  today: string = '15 September 2025'
 
   constructor() { }
 
