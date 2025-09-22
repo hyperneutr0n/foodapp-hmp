@@ -32,6 +32,11 @@ export class ListPage implements OnInit {
   maxLimit = false;
   private readonly qLimit = 10;
 
+  couponcode: string = "0000"
+  strvalid: string = "Invalid"
+  discount: number = 0
+
+  couponcolor: string = "red"
   constructor() { }
 
   ngOnInit() {
@@ -52,7 +57,7 @@ export class ListPage implements OnInit {
     if (this.yesterdayLimit) {
       return;
     }
-    
+
     this.offset--;
     this.updateDateAndLimits();
   }
@@ -61,7 +66,7 @@ export class ListPage implements OnInit {
     if (this.tomorrowLimit) {
       return;
     }
-    
+
     this.offset++;
     this.updateDateAndLimits();
   }
@@ -100,4 +105,47 @@ export class ListPage implements OnInit {
     this.minLimit = this.quantity <= 0;
     this.maxLimit = this.quantity >= this.qLimit;
   }
+
+  checkValid(): void {
+    switch (this.couponcode) {
+      case "1234":
+        this.strvalid = "Valid";
+        this.discount = 5;
+        this.couponcolor = "green"
+        break;
+      case "5678":
+        this.strvalid = "Valid";
+        this.discount = 10;
+        this.couponcolor = "green"
+        break;
+      default:
+        this.strvalid = "Invalid";
+        this.discount = 0;
+        this.couponcolor = "red"
+        break;
+    }
+  }
+
+  books = [
+    {
+      title: 'To Kill a Mockingbird',
+      author: 'Harper Lee',
+      publishedDate: new Date('1960-07-11'),
+      price: 7.99,
+      discount: 10
+    },
+    {
+      title: 'The Great Gatsby',
+      author: 'F. Scott Fitzgerald',
+      publishedDate: new Date('1925-04-10'),
+      price: 10.99,
+    },
+    {
+      title: 'Pride and Prejudice',
+      author: 'Jane Austen',
+      publishedDate: new Date('1813-01-28'),
+      price: 12.75,
+      discount: 15
+    }
+  ]
 }
